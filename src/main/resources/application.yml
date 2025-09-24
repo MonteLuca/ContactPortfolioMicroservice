@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: contact-api
+  config:
+    import: optional:file:./secrets.yml
+
+server:
+  port: ${PORT:8080}
+
+app:
+  cors:
+    origin: ${APP_CORS_ORIGIN:http://localhost:4200}
