@@ -1,12 +1,19 @@
-# syntax=docker/dockerfile:1
-FROM eclipse-temurin:21-jdk AS build
+# ----- build -----
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY . .
-RUN ./mvnw -DskipTests package
+COPY pom.xml .
+# cache de dependencias para acelerar builds
+RUN mvn -q -DskipTests dependency:go-offline
+COPY src ./src
+RUN mvn -q -DskipTests package
 
+# ----- runtime -----
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-ENV SPRING_PROFILES_ACTIVE=prod
+
+ENV PORT=8080
 EXPOSE 8080
-CMD ["sh","-c","java -Dserver.port=${PORT:-8080} -jar app.jar"]
+
+# Spring Boot ya toma server.port de env si lo definiste en application.yml (PORT)
+ENTRYPOINT ["java","-jar","app.jar"]
