@@ -6,3 +6,6 @@ spring:
 app:
   cors:
     origin: https://lucamonteleoneportfolio.netlify.app
+
+server:
+  forward-headers-strategy: framework
