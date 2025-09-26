@@ -5,7 +5,7 @@ spring:
 
 app:
   cors:
-    origin: https://lucamonteleoneportfolio.netlify.app
+    origin: https://lucamonteleone-portfolio.netlify.app
 
 server:
   forward-headers-strategy: framework
