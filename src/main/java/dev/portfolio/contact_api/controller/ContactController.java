@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/contact")
-@CrossOrigin(origins = "${app.cors.origin}")
 @RequiredArgsConstructor
 public class ContactController {
 
     private final MailService mailService;
 
-    @PostMapping("/contact")
+    @PostMapping
     public ResponseEntity<Void> send(@Valid @RequestBody ContactRequest request) {
         mailService.sendContact(request);
         return ResponseEntity.noContent().build();

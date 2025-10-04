@@ -2,7 +2,21 @@ spring:
   config:
     activate:
       on-profile: dev
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "lucamonteleone546@gmail.com"
+    password: "vtzsnpgrdammlzin"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 app:
   cors:
     origin: http://localhost:4200
+  mail:
+    to: "lucamonteleone546@gmail.com"
+    from: "lucamonteleone546@gmail.com"
