@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/contact")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"https://lucamonteleone-portfolio.netlify.app", "http://localhost:4200"}, 
+             allowCredentials = "true",
+             maxAge = 3600)
 public class ContactController {
 
     private final MailService mailService;
